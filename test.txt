@@ -1,1 +1,7 @@
 #Used to copy and reuse the text or inputs to the llm for testing purpose
+
+How to add,commit and push the code into github
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/USERNAME/REPOSITORY-NAME.git
+git push -u origin main
