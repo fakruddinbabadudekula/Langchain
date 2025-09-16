@@ -2,6 +2,9 @@
 langchain
 langchain-core
 
+# LangChain Community
+langchain_community
+
 # OpenAI Integration
 langchain-openai
 openai
@@ -27,3 +30,18 @@ scikit-learn
 
 # deep Learning
 torch
+
+# Youtube Transcript
+youtube-transcript-api
+
+# sentence-transformers for vector embedding model
+sentence-transformers
+
+# huggingface_hub[hf_xet] for fast downloading and storing models
+huggingface_hub[hf_xet]
+
+# faiss-cpu for vector storing
+faiss-cpu
+
+# streamlit 
+streamlit

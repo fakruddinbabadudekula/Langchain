@@ -5,3 +5,17 @@ git add .
 git commit -m "Initial commit"
 git remote add origin https://github.com/USERNAME/REPOSITORY-NAME.git
 git push -u origin main
+
+// For youtube transcription Use the version of above 1.1
+from youtube_transcript_api import YouTubeTranscriptApi,TranscriptsDisabled
+def yttranscript(video_id,lang='en'):
+    try:
+    # If you don’t care which language, this returns the “best” one
+        transcript_list = YouTubeTranscriptApi().fetch(video_id, languages=["en"])
+
+    # Flatten it to plain text
+        transcript = " ".join(chunk.text for chunk in transcript_list)
+        return transcript
+
+    except TranscriptsDisabled:
+        print("No captions available for this video.")
