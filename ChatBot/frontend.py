@@ -27,17 +27,38 @@ if user_input:
         st.text(user_input)
 
     # invoke the graph and return the list of messages_history 
-    response=chatbot.invoke({
-        'messages':HumanMessage(content=user_input)
-    },config=CONFIG)
+    # response=chatbot.invoke({
+    #     'messages':HumanMessage(content=user_input)
+    # },config=CONFIG)
 
-
+    
     # adding the response to message_history
-    st.session_state['messages_history'].append({
-        'role':'assistant',
-        'content':response['messages'][-1].content
-    })
+    # st.session_state['messages_history'].append({
+    #     'role':'assistant',
+    #     'content':response['messages'][-1].content
+    # })
 
     # Printing the assistant message
     with st.chat_message('assistant'):
-        st.text(response['messages'][-1].content)
+    
+    # Stream the assistant's reply into the chat UI
+        response = st.write_stream(
+        # Generator comprehension: extract only the content (text) 
+        # from each streamed message chunk
+        message_chunk.content 
+        for message_chunk, metadata in chatbot.stream(
+            
+            # Input to the chatbot: one user message
+            {'messages': [HumanMessage(content=user_input)]},
+            
+            # Config: thread_id keeps conversation state across turns
+            config={'configurable': {'thread_id': 'thread-1'}},
+            
+            # Stream mode: stream full messages instead of raw tokens
+            stream_mode='messages'
+        )
+    )
+        st.session_state['messages_history'].append({
+        'role':'assistant',
+        'content':response
+    })
