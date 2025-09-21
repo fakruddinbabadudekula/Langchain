@@ -45,3 +45,12 @@ faiss-cpu
 
 # streamlit 
 streamlit
+
+# langchain_experimental for experimental methods like shell tools 
+langchain_experimental
+
+# ddgs duckduckgo search for ddgs tool
+ddgs
+
+# langgraph
+langgraph
