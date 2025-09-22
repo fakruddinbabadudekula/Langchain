@@ -4,12 +4,20 @@ from typing import TypedDict,Annotated,List
 from pydantic import BaseModel
 from langchain_core.messages import BaseMessage,HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
+from langchain.chains import LLMChain
+from os import getenv
 from dotenv import load_dotenv
+
 load_dotenv()
 # 2. Initialize Gemini 2.5 Pro
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-pro",
-    temperature=0.7,
+llm = ChatOpenAI(
+  api_key=getenv("OPENROUTER_API_KEY"),
+  base_url=getenv("OPENROUTER_BASE_URL"),
+  model="openai/gpt-oss-20b:free",  # Replace with your desired model
+  temperature=0.7,
+ 
 )
 
 # Creating the checkpointer object using InMEmorySaver()
@@ -37,5 +45,4 @@ graph.add_edge('llm_node',END)
 
 # compiling the graph and pass the checkpointer
 chatbot=graph.compile(checkpointer=checkpointer)
-
 
