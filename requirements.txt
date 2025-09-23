@@ -54,3 +54,8 @@ ddgs
 
 # langgraph
 langgraph
+
+# langgraph-checkpoint-sqllite for using sqllite
+langgraph-checkpoint-sqlite
+
+db-sqlite3
